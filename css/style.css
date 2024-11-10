@@ -1,0 +1,290 @@
+/* Base styles for mobile-first approach */
+:root {
+  --primary-color: #1a237e;
+  --secondary-color: #3949ab;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --table-stripe: #f5f5f5;
+  --link-color: #000000;
+}
+
+/* Dark mode preferences */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #3949ab;
+    --secondary-color: #5c6bc0;
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --table-stripe: #2d2d2d;
+    --link-color: #64b5f6;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Skip link */
+a[href="#main"] {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1em;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+a[href="#main"]:focus {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Navigation */
+nav {
+  background-color: var(--primary-color);
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  display: block;
+}
+
+nav a:hover, nav a:focus {
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 1rem;
+}
+
+header img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 50%;
+  margin: 1rem 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+tr:nth-child(even) {
+  background-color: var(--table-stripe);
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+/* Sections */
+section {
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer a {
+  color: white;
+}
+
+/* Media query for larger screens */
+@media screen and (min-width: 768px) {
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  table {
+    display: table;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+/* Simple fade-in animation for content */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+section {
+  animation: fadeIn 0.5s ease-in;
+}
+.race-time::before {
+  content: "\f017"; 
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900; 
+  padding-right: 5px; 
+}
+
+
+
+
+
+/* deliverable 4 changes */
+
+
+
+
+
+
+/* Additional Media Queries for Tablet and Desktop */
+@media screen and (min-width: 768px) {
+  /* Layout improvements */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Enhanced header layout */
+  header {
+    padding: 2rem;
+    gap: 3rem;
+  }
+
+  header img {
+    max-width: 250px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Improved table layout */
+  #athlete-sr-table, #athlete-result-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Gallery section */
+  #gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* Desktop enhancements */
+  nav ul {
+    justify-content: flex-start;
+    padding-left: 2rem;
+  }
+
+  /* Two-column layout for tables on larger screens */
+  main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+
+  #athlete-sr-table {
+    grid-column: 1;
+  }
+
+  #athlete-result-table {
+    grid-column: 2;
+  }
+
+  #gallery {
+    grid-column: 1 / -1;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --text-color: #000000;
+    --link-color: #000000;
+  }
+  
+  * {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Print styles */
+@media print {
+  nav, footer {
+    display: none;
+  }
+  
+  body {
+    color: black;
+    background: white;
+  }
+  
+  table {
+    page-break-inside: avoid;
+  }
+}
